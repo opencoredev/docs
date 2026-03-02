@@ -1,0 +1,50 @@
+---
+title: Providers and Encryption
+description: Provider credential model, encrypted secret handling, and provider runtime routing.
+---
+
+# Providers and Encryption
+
+OpenChat supports two provider paths:
+
+1. `osschat` shared OpenRouter key (free-tier style usage controls).
+2. User-managed credentials for `openrouter`, `openai`, `anthropic`, `google`, `xai`, `groq`, `mistral`, `cohere`, `codex`, and `claude-code`.
+
+## Provider Registry
+
+Provider metadata is defined in `apps/web/src/lib/provider-credentials.ts`.
+
+- Each provider has `authType` (`apiKey` or `oauth`), placeholder, and optional docs URL.
+- UI reads these definitions in `settings-providers.tsx`.
+
+## Encryption Model
+
+Secrets are encrypted server-side before persistence.
+
+- Web server route encrypts incoming secrets in `api/provider-credentials.ts`.
+- Encryption helpers are in `lib/server-crypto.ts` using AES-256-GCM.
+- Ciphertext is stored in Convex `userProviderCredentials` table.
+
+Required env var:
+
+```bash
+OPENROUTER_ENCRYPTION_KEY=<base64-encoded 32-byte key>
+```
+
+<Warning>
+  If `OPENROUTER_ENCRYPTION_KEY` is missing or invalid length, credential writes fail.
+</Warning>
+
+## Runtime Provider Resolution
+
+`streamExecution.ts` resolves provider auth at request time:
+
+- `osschat` uses server `OPENROUTER_API_KEY`.
+- Other providers fetch encrypted user credential via internal query.
+- Secret is decrypted in action runtime and used to instantiate provider SDK client.
+
+## Operational Best Practices
+
+- Rotate encryption keys with a controlled migration plan.
+- Apply rate limits to credential update/delete endpoints.
+- Keep provider secrets server-only; never expose raw values to the client.

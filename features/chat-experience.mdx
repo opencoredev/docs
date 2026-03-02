@@ -1,0 +1,42 @@
+---
+title: Chat Experience
+description: Core chat behavior including send, stream, edit, retry, fork, and navigation.
+---
+
+# Chat Experience
+
+This is the central OpenChat feature set used by all authenticated users.
+
+<img src="https://raw.githubusercontent.com/tryosschat/openchat/main/docs-site/images/hero-light.png" alt="OpenChat chat interface" />
+
+## Core Message Lifecycle
+
+1. User submits text/files through `PremiumPromptInputInner`.
+2. `use-persistent-chat` orchestrates chat creation + action dispatch.
+3. Streaming updates are applied while job status is active.
+4. Final message state is persisted via Convex mutations.
+
+## Built-in Message Actions
+
+From `message-actions.tsx` and related hooks:
+
+- Edit previous user message.
+- Retry response with same or different model.
+- Fork chat from any message to create a branch.
+- Copy user or assistant content.
+
+## Streaming and Recovery
+
+- Live updates are managed by `use-chat-streaming.ts`.
+- Active stream jobs are read from Convex and resumed on reconnect.
+- Stop generation shortcut and UI action both cancel active stream state.
+
+## Sidebar and Chat Navigation
+
+- Chat list comes from paginated `chats.list` query.
+- Supports rename, delete, bulk delete, unread markers, and active stream indicators.
+- Route `/c/$chatId` loads specific conversation context.
+
+## Why This Matters
+
+This design keeps chat responsive during long generations, supports iterative editing, and preserves full conversation history with branchable workflows.

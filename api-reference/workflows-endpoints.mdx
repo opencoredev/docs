@@ -1,0 +1,35 @@
+---
+title: /api/workflow/*
+description: Workflow endpoints for title generation, export, cleanup, and account deletion.
+---
+
+# /api/workflow/*
+
+OpenChat uses workflow routes for long-running or operational actions.
+
+## Endpoints
+
+| Endpoint | Purpose |
+|---|---|
+| `/api/workflow/generate-title` | Generate and save chat title |
+| `/api/workflow/export-chat` | Export chat as markdown/json |
+| `/api/workflow/delete-account` | Delete user data in batches |
+| `/api/workflow/cleanup` | Retention cleanup batches |
+
+## Execution Modes
+
+- Local/non-production: inline execution.
+- Production: queued execution via Upstash Workflow callbacks.
+
+## Shared Controls
+
+- Same-origin and auth checks for user-triggered writes.
+- Rate limits on sensitive endpoints.
+- Callback signature verification for workflow callbacks.
+
+## Notable Payload Fields
+
+- `generate-title`: `chatId`, `length`, `provider`, optional `seedText`.
+- `export-chat`: `chatId`, `format` (`markdown` or `json`).
+- `delete-account`: optional `batchSize`, auth-bound identity.
+- `cleanup`: `retentionDays`, `batchSize`, cleanup token auth.

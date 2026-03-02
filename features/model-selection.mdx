@@ -1,0 +1,42 @@
+---
+title: Model Selection
+description: How users choose models, providers, and reasoning preferences.
+---
+
+# Model Selection
+
+OpenChat separates model selection from provider credential management, so users can switch quickly without leaving chat.
+
+<img src="https://raw.githubusercontent.com/tryosschat/openchat/main/docs-site/images/hero-dark.png" alt="Model and provider experience" />
+
+## Model Selector UX
+
+Implemented in `model-selector.tsx` with desktop and mobile variants:
+
+- Search by model/provider.
+- Filter by provider/favorites.
+- Hover/info panel for model metadata.
+- Keyboard navigation for accessibility.
+
+## Favorite Models
+
+- Stored in local persistent state.
+- Used for fast grouping in retry/fork model menus.
+- Defaults can be seeded in selector UI.
+
+## Provider Modes
+
+- `osschat` provider for shared hosted usage profile.
+- BYOC/BYOK providers configured in Settings > Providers.
+- Active provider and daily usage/search state in `provider.ts`.
+
+## Reasoning Controls
+
+- Reasoning toggle appears only for capable models.
+- Effort levels are tracked in model state and sent at generation time.
+
+## Model Catalog Source
+
+- `/api/models` proxies OpenRouter models endpoint.
+- Uses Upstash-backed cache and IP-based rate limiting.
+- Includes `TRUST_PROXY` safeguards for rate-limit identity correctness.

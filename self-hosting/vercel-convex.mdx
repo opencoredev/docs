@@ -1,0 +1,31 @@
+---
+title: Vercel + Convex Cloud
+description: Deploy OpenChat with managed hosting on Vercel and Convex Cloud.
+---
+
+# Vercel + Convex Cloud
+
+This is the fastest production path with the least infrastructure overhead.
+
+## Deployment Sequence
+
+1. Create/import project in Vercel from OpenChat repo.
+2. Provision Convex deployment and set deployment URL variables.
+3. Configure GitHub OAuth callback against Convex site URL.
+4. Add required secrets in Vercel environment settings.
+5. Verify workflow + rate-limit keys (Upstash) if enabled.
+
+## Important Variables
+
+- `VITE_CONVEX_URL`
+- `VITE_CONVEX_SITE_URL`
+- `BETTER_AUTH_SECRET`
+- `OPENROUTER_ENCRYPTION_KEY`
+- Optional Upstash and search/workflow variables
+
+## Production Validation Checklist
+
+- Sign in via GitHub OAuth works.
+- New chat streams and persists.
+- Provider credentials can be saved and used.
+- Workflow endpoints return expected status codes.

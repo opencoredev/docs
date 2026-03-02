@@ -1,0 +1,23 @@
+---
+title: GET /api/models
+description: Cached and rate-limited model catalog proxy for OpenRouter models.
+---
+
+# GET /api/models
+
+Returns model catalog JSON from OpenRouter, with cache and abuse protection.
+
+## Behavior
+
+- Upstash Redis cache key: `openchat:models`.
+- Cache TTL: 4 hours.
+- IP rate limit: sliding window (30 requests / 60s).
+- Requires trustworthy client IP extraction using `TRUST_PROXY` mode.
+
+## Responses
+
+- `200`: JSON model payload.
+- `400`: Client IP unavailable when rate limiting is enabled.
+- `429`: Rate limit exceeded.
+- `502`: Upstream OpenRouter failure.
+- `503`: Service unavailable when fail-closed infra settings trigger.

@@ -1,0 +1,64 @@
+---
+title: Development Workflows
+description: Day-to-day contributor workflows for OpenChat.
+---
+
+# Development Workflows
+
+This page maps common engineering tasks to the actual OpenChat architecture.
+
+<img src="https://raw.githubusercontent.com/tryosschat/openchat/main/docs-site/images/checks-passed.png" alt="Checks passed screenshot" />
+
+## Monorepo Layout
+
+- `apps/web`: TanStack Start frontend and server routes.
+- `apps/server/convex`: Convex schema, queries, mutations, actions.
+- `docs-site` in source repo: upstream Mintlify docs source.
+
+## Typical Feature Flow
+
+<Steps>
+  <Step title="UI change">
+    Update components/hooks in `apps/web/src/components` and `apps/web/src/hooks`.
+  </Step>
+  <Step title="Backend change">
+    Add or update Convex functions in `apps/server/convex`.
+  </Step>
+  <Step title="Schema change">
+    Update `apps/server/convex/schema.ts`, then run:
+
+    ```bash
+    bun x convex codegen
+    ```
+  </Step>
+  <Step title="Validate">
+    ```bash
+    bun check
+    bun check-types
+    bun test
+    ```
+  </Step>
+</Steps>
+
+## Feature Ownership Map
+
+| Area | Primary files |
+|---|---|
+| Chat lifecycle | `use-persistent-chat.ts`, `use-chat-actions.ts`, `messages.ts` |
+| Streaming and resume | `use-chat-streaming.ts`, `streamExecution.ts`, `backgroundStream.ts` |
+| Model catalog | `model.ts`, `api/models.ts` |
+| Provider credentials | `settings-providers.tsx`, `provider-credentials.ts`, `userApiKeys.ts` |
+| Auth | `auth-client.tsx`, `server-auth.ts`, `auth.ts` |
+| Settings | `settings.tsx`, `settings-*.tsx` |
+
+## Local Debug Tips
+
+- Use Convex dashboard for function logs and table inspection.
+- Verify same-origin and auth token behavior when testing API routes.
+- For provider credential issues, confirm `OPENROUTER_ENCRYPTION_KEY` is valid base64 32-byte key.
+
+## Related Docs
+
+- `/guides/architecture`
+- `/api-reference/introduction`
+- `/self-hosting/environment`

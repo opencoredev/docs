@@ -1,0 +1,35 @@
+---
+title: Web Search and Reasoning
+description: Optional tool use and model reasoning behavior in OpenChat streams.
+---
+
+# Web Search and Reasoning
+
+OpenChat can augment responses with controlled web search and model reasoning traces.
+
+## Web Search
+
+- Toggle from chat prompt toolbar.
+- Availability is checked per deployment and per-user quota.
+- Daily search limit is enforced in Convex (`search.ts`).
+- Search tool usage is tracked on message/job metadata.
+
+If search is requested but unavailable, OpenChat records explicit unavailable state and continues with non-search generation.
+
+## Reasoning
+
+- Reasoning-enabled models stream reasoning parts separately from answer text.
+- Chain-of-thought style parts are normalized and persisted as structured items.
+- Reasoning metadata includes requested flag, token count, and duration.
+
+## Stream Metadata
+
+Streaming pipeline tracks:
+
+- time to first token
+- tokens per second
+- total duration
+- tool call count
+- web search call count
+
+This metadata powers UI analytics and post-hoc performance tuning.

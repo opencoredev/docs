@@ -1,0 +1,43 @@
+---
+title: Files and Exports
+description: File attachments, upload metadata, and chat export workflows.
+---
+
+# Files and Exports
+
+OpenChat supports attachment-aware chats and structured export workflows.
+
+## File Attachments
+
+- Uploads are stored in Convex storage with metadata rows in `fileUploads`.
+- Message rows can include attachment arrays with storage IDs and URLs.
+- File ownership remains tied to user and chat IDs.
+
+## Export Chat Workflow
+
+Endpoint: `POST /api/workflow/export-chat`
+
+Supports:
+
+- `markdown` export
+- `json` export
+
+Behavior:
+
+- Validates same-origin and authenticated user ownership.
+- Applies export rate limits.
+- Generates export data URI response with filename + byte length.
+- Enforces max payload size (`MAX_EXPORT_BYTES`).
+
+## Data Included in Exports
+
+- Chat title and timestamps.
+- Ordered messages with role/content.
+- Reasoning text if present.
+- Attachment metadata and URLs when resolvable.
+
+## Related Background Workflows
+
+- Title generation (`/api/workflow/generate-title`).
+- Account deletion workflow (`/api/workflow/delete-account`).
+- Data retention cleanup (`/api/workflow/cleanup`).

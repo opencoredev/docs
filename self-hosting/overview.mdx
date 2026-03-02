@@ -1,0 +1,31 @@
+---
+title: Self-Hosting Overview
+description: Deployment options and architecture decisions for self-hosting OpenChat.
+---
+
+# Self-Hosting Overview
+
+OpenChat supports two primary deployment patterns:
+
+1. Vercel + Convex Cloud (recommended managed path).
+2. Docker-based deployments for containerized environments.
+
+## Choose a Path
+
+| Path | Best for | Tradeoffs |
+|---|---|---|
+| Vercel + Convex Cloud | Fast setup, managed infra | Vendor-managed runtime |
+| Docker | Custom infra control | More ops overhead |
+
+## Production Requirements
+
+- GitHub OAuth app configured for production callback URL.
+- Convex production deployment and keys.
+- `OPENROUTER_ENCRYPTION_KEY` configured for provider credentials.
+- Optional Upstash services for cache/rate limits/workflow queue.
+
+## Related Guides
+
+- `/self-hosting/environment`
+- `/self-hosting/docker`
+- `/self-hosting/vercel-convex`

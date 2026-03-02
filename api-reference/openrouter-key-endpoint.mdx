@@ -1,0 +1,33 @@
+---
+title: /api/openrouter-key
+description: Store and check user OpenRouter key presence without exposing raw key material.
+---
+
+# /api/openrouter-key
+
+Supports `GET`, `POST`, and `DELETE`.
+
+## GET
+
+Returns key presence only:
+
+```json
+{ "hasKey": true }
+```
+
+## POST
+
+Stores encrypted OpenRouter key.
+
+```json
+{ "apiKey": "sk-or-v1-..." }
+```
+
+## DELETE
+
+Removes stored key for authenticated user.
+
+## Security
+
+- No response ever includes raw key.
+- Same-origin + auth + rate limiting are enforced.

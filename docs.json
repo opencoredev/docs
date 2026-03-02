@@ -8,10 +8,6 @@
     "dark": "#15803D"
   },
   "favicon": "/favicon.svg",
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
   "navigation": {
     "tabs": [
       {
@@ -22,25 +18,58 @@
             "icon": "rocket",
             "pages": [
               "index",
-              "quickstart"
+              "quickstart",
+              "guides/architecture"
+            ]
+          },
+          {
+            "group": "Core Features",
+            "icon": "sparkles",
+            "pages": [
+              "features/chat-experience",
+              "features/model-selection",
+              "features/web-search-and-reasoning",
+              "features/files-and-exports",
+              "features/settings-and-shortcuts"
             ]
           },
           {
             "group": "Guides",
             "icon": "book",
             "pages": [
-              "guides/architecture",
               "guides/authentication",
-              "guides/ai-models",
-              "guides/contributing"
+              "guides/providers-and-encryption",
+              "development"
             ]
           },
           {
             "group": "Self-Hosting",
             "icon": "server",
             "pages": [
+              "self-hosting/overview",
+              "self-hosting/environment",
               "self-hosting/docker",
-              "self-hosting/environment"
+              "self-hosting/vercel-convex"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API reference",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "api-reference/introduction"
+            ]
+          },
+          {
+            "group": "Web API Routes",
+            "pages": [
+              "api-reference/models-endpoint",
+              "api-reference/provider-credentials-endpoint",
+              "api-reference/openrouter-key-endpoint",
+              "api-reference/workflows-endpoints"
             ]
           }
         ]
@@ -50,44 +79,51 @@
       "anchors": [
         {
           "anchor": "GitHub",
-          "href": "https://github.com/tryosschat/openchat",
+          "href": "https://github.com/opencoredev/openchat",
           "icon": "github"
         },
         {
           "anchor": "Try OpenChat",
-          "href": "https://osschat.io",
+          "href": "https://osschat.dev",
           "icon": "arrow-up-right-from-square"
         }
       ]
     }
   },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
   "navbar": {
     "links": [
       {
         "label": "GitHub",
-        "href": "https://github.com/tryosschat/openchat"
+        "href": "https://github.com/opencoredev/openchat"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Try OpenChat",
-      "href": "https://osschat.io"
+      "href": "https://osschat.dev"
     }
   },
   "contextual": {
     "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "cursor"
-    ]
+     "copy",
+     "view",
+     "chatgpt",
+     "claude",
+     "perplexity",
+     "mcp",
+     "cursor",
+     "vscode"
+   ]
   },
   "footer": {
     "socials": {
-      "github": "https://github.com/tryosschat/openchat"
+      "x": "https://x.com/osschat",
+      "github": "https://github.com/opencoredev/openchat"
     }
   },
   "mermaid": {}
 }
-

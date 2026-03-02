@@ -1,0 +1,24 @@
+---
+title: API Reference Overview
+description: Server route APIs exposed by the OpenChat web app.
+---
+
+# API Reference Overview
+
+OpenChat exposes server routes under `apps/web/src/routes/api`.
+
+## Endpoint Families
+
+- Model catalog: `/api/models`
+- Credential management: `/api/provider-credentials`, `/api/openrouter-key`
+- Presence: `/api/typing`
+- Workflow actions: `/api/workflow/*`
+
+## Shared Behavior
+
+- Most write endpoints enforce same-origin checks.
+- Authenticated requests are tied to Convex user identity.
+- Rate limiting is applied to sensitive operations.
+- Workflow endpoints can run inline locally and queued in production.
+
+Use individual pages in this section for payload and response details.
