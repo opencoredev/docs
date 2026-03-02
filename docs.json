@@ -38,7 +38,9 @@
             "icon": "book",
             "pages": [
               "guides/authentication",
+              "guides/ai-models",
               "guides/providers-and-encryption",
+              "guides/contributing",
               "development"
             ]
           },

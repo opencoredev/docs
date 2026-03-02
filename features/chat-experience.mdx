@@ -7,7 +7,7 @@ description: Core chat behavior including send, stream, edit, retry, fork, and n
 
 This is the central OpenChat feature set used by all authenticated users.
 
-<img src="https://raw.githubusercontent.com/tryosschat/openchat/main/docs-site/images/hero-light.png" alt="OpenChat chat interface" />
+<img src="/images/openchat/features/chat-interface-full.png" alt="OpenChat chat interface with sidebar and composer" />
 
 ## Core Message Lifecycle
 
@@ -40,3 +40,14 @@ From `message-actions.tsx` and related hooks:
 ## Why This Matters
 
 This design keeps chat responsive during long generations, supports iterative editing, and preserves full conversation history with branchable workflows.
+
+## Related Pages
+
+<CardGroup cols={2}>
+  <Card title="Model Selection" icon="sparkles" href="/features/model-selection">
+    Learn provider switching and reasoned model choices
+  </Card>
+  <Card title="Model settings" icon="settings" href="/features/settings-and-shortcuts">
+    Configure defaults that affect chat behavior
+  </Card>
+</CardGroup>

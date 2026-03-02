@@ -7,7 +7,9 @@ description: How users choose models, providers, and reasoning preferences.
 
 OpenChat separates model selection from provider credential management, so users can switch quickly without leaving chat.
 
-<img src="https://raw.githubusercontent.com/tryosschat/openchat/main/docs-site/images/hero-dark.png" alt="Model and provider experience" />
+<img src="/images/hero-dark.png" alt="Model and provider experience" />
+
+<img src="/images/openchat/landing/osschat-home-full-mobile.png" alt="OpenChat mobile layout for model and prompt controls" />
 
 ## Model Selector UX
 
@@ -37,6 +39,17 @@ Implemented in `model-selector.tsx` with desktop and mobile variants:
 
 ## Model Catalog Source
 
-- `/api/models` proxies OpenRouter models endpoint.
+- [GET /api/models](/api-reference/models-endpoint) proxies the OpenRouter models endpoint.
 - Uses Upstash-backed cache and IP-based rate limiting.
 - Includes `TRUST_PROXY` safeguards for rate-limit identity correctness.
+
+## Learn more
+
+<CardGroup cols={2}>
+  <Card title="Authentication" icon="key" href="/guides/authentication">
+    Confirm OAuth and session assumptions
+  </Card>
+  <Card title="Quickstart" icon="code" href="/quickstart">
+    Try model selection in a running local app
+  </Card>
+</CardGroup>

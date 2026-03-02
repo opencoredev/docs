@@ -11,6 +11,8 @@ This guide gets OpenChat running locally for development and feature testing.
   Prefer the hosted app? Use `https://osschat.dev`.
 </Note>
 
+<img src="/images/openchat/landing/osschat-signin-page.png" alt="OpenChat sign in screen for OAuth setup" />
+
 ## Prerequisites
 
 - Bun 1.3+
@@ -59,15 +61,31 @@ This guide gets OpenChat running locally for development and feature testing.
     ```
 
     This starts web + Convex.
+
+    <img src="/images/openchat/landing/osschat-home-full-desktop.png" alt="OpenChat dashboard after local services start" />
   </Step>
 </Steps>
 
-## Verify Setup
+## Visual checkpoints
 
-1. Open `http://localhost:3000`.
-2. Sign in with GitHub.
+1. Open `http://localhost:3000`; you should see the sign-in screen.
+
+<img src="/images/openchat/landing/osschat-signin-page.png" alt="Expected sign in screen after opening the app" />
+
+2. Sign in with GitHub; then the main app shell appears.
+
+<img src="/images/openchat/landing/osschat-home-full-desktop.png" alt="Main OpenChat UI with chat sidebar and input" />
+
 3. Start a chat and send one prompt.
 4. Open Settings and confirm Providers/Models tabs load.
+
+## Verify Setup
+
+Use this for a quick functional check after the steps above:
+
+- Confirm `bun dev` shows no runtime errors in console
+- Confirm `.env.local` changes persist without restart prompts
+- Confirm models and providers load from the UI
 
 ## Useful Commands
 
@@ -82,6 +100,15 @@ This guide gets OpenChat running locally for development and feature testing.
 
 ## Next Docs
 
-- `/guides/architecture`
-- `/features/chat-experience`
-- `/guides/providers-and-encryption`
+<CardGroup cols={3}>
+  <Card title="Architecture" icon="sitemap" href="/guides/architecture">
+    Understand the full system structure
+  </Card>
+  <Card title="Chat Experience" icon="message" href="/features/chat-experience">
+    Learn streaming, editing, retry, and fork flows
+  </Card>
+  <Card title="Self-Hosting" icon="server" href="/self-hosting/docker">
+    Continue with Docker or Vercel deployment
+  </Card>
+</CardGroup>
+
